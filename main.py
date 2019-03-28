@@ -1,8 +1,10 @@
 import socket
+from views import *
+
 
 URLS = {
-    '/': 'Hello Index',
-    '/blog': 'Hello Blog'
+    '/': index,
+    '/blog': blog,
 }
 
 
@@ -15,7 +17,7 @@ def parse_requset(request):
 def generate_content(code, url):
     if code == 404:
         return '<h1>404 Not Found</h1>'
-    return '<h2>' + URLS[url] + '</h2>'
+    return URLS[url]()
 
 def generate_headers(method, url):
     if  method != 'GET':
